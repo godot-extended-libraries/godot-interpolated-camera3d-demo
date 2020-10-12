@@ -13,7 +13,9 @@ Please report issues specific to the add-on
 
 ### Using the Asset Library
 
-TODO (not uploaded yet).
+- Open the Godot project manager.
+- Navigate to the **Templates** tab and search for "interpolatedcamera3d".
+- Install the [*InterpolatedCamera3D Demo*](https://godotengine.org/asset-library/asset/740) project.
 
 ### Manual installation
 
