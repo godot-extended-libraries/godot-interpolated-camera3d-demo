@@ -1,5 +1,5 @@
 # The add-on code in this repository is copied from
-# <https://github.com/Calinou/godot-interpolated-camera3d> regularly.
+# <https://github.com/godot-extended-libraries/godot-interpolated-camera3d> regularly.
 # Please open pull requests for the add-on code itself there, not in
 # this demo repository.
 /addons linguist-vendored
