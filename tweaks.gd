@@ -3,7 +3,7 @@
 extends VBoxContainer
 
 @onready var interpolated_camera := $"../InterpolatedCamera3D"
-@onready var target_camera := $"../KinematicBody3D/Pivot/TargetCamera" as Camera3D
+@onready var target_camera := $"../CharacterBody3D/Pivot/TargetCamera" as Camera3D
 
 
 func _on_translate_speed_value_changed(value: float) -> void:

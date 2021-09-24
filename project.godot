@@ -8,14 +8,14 @@
 
 config_version=4
 
-_global_script_classes=[ {
+_global_script_classes=[{
 "base": "Camera3D",
-"class": @"InterpolatedCamera3D",
-"language": @"GDScript",
+"class": &"InterpolatedCamera3D",
+"language": &"GDScript",
 "path": "res://addons/interpolated_camera_3d/interpolated_camera_3d.gd"
-} ]
+}]
 _global_script_class_icons={
-@"InterpolatedCamera3D": "res://addons/interpolated_camera_3d/interpolated_camera_3d.svg"
+"InterpolatedCamera3D": "res://addons/interpolated_camera_3d/interpolated_camera_3d.svg"
 }
 
 [application]
@@ -24,10 +24,17 @@ config/name="InterpolatedCamera3D Demo"
 config/description="Demonstration project for the InterpolatedCamera3D add-on."
 run/main_scene="res://test.tscn"
 
+[display]
+
+window/dpi/allow_hidpi=true
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [editor_plugins]
 
-enabled=PackedStringArray( "interpolated_camera_3d" )
+enabled=PackedStringArray("res://addons/interpolated_camera_3d/plugin.cfg")
 
 [rendering]
 
+anti_aliasing/quality/msaa=2
 environment/default_environment="res://default_env.tres"

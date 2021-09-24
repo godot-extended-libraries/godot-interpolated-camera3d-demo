@@ -2,16 +2,16 @@
 
 importer="texture"
 type="StreamTexture2D"
-uid="uid://e5mv3ytuj0u6"
-path="res://.godot/imported/interpolated_camera_3d.svg-a9f084fb38558ada3c63379b69457ab3.stex"
+uid="uid://bq3ea4ijj7n50"
+path="res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/interpolated_camera_3d/interpolated_camera_3d.svg"
-dest_files=["res://.godot/imported/interpolated_camera_3d.svg-a9f084fb38558ada3c63379b69457ab3.stex"]
+source_file="res://icon.png"
+dest_files=["res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"]
 
 [params]
 
