@@ -6,7 +6,7 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
+config_version=5
 
 _global_script_classes=[{
 "base": "Camera3D",
@@ -23,10 +23,10 @@ _global_script_class_icons={
 config/name="InterpolatedCamera3D Demo"
 config/description="Demonstration project for the InterpolatedCamera3D add-on."
 run/main_scene="res://test.tscn"
+config/features=PackedStringArray("4.0")
 
 [display]
 
-window/dpi/allow_hidpi=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
