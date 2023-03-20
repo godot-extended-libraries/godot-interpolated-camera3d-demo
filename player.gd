@@ -1,6 +1,9 @@
-# Copyright © 2020-2021 Hugo Locurcio and contributors - MIT License
+# Copyright © 2020-present Hugo Locurcio and contributors - MIT License
 # See `LICENSE.md` included in the source distribution for details.
 extends CharacterBody3D
+
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 # Required to rotate around the cube.
 @onready var pivot := $Pivot as Node3D
@@ -24,14 +27,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	# Apply friction.
 	velocity.x *= 0.96
 	velocity.y *= 0.98
 	velocity.z *= 0.96
 
-	# Apply gravity.
-	velocity.y -= 0.5
+	if not is_on_floor():
+		# Apply gravity.
+		velocity.y -= gravity * delta
 
 	# Player movement.
 	var motion := Vector3()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://don2p0br1xnyt"]
+[gd_scene load_steps=11 format=3 uid="uid://don2p0br1xnyt"]
 
 [ext_resource type="Script" path="res://addons/interpolated_camera_3d/interpolated_camera_3d.gd" id="1"]
 [ext_resource type="Script" path="res://player.gd" id="2"]
@@ -18,6 +18,10 @@ background_mode = 2
 sky = SubResource("Sky_oyibt")
 tonemap_mode = 3
 tonemap_white = 6.0
+fog_enabled = true
+fog_light_color = Color(0.521569, 0.556863, 0.615686, 1)
+fog_density = 0.003
+fog_sky_affect = 0.0
 
 [sub_resource type="SphereShape3D" id="1"]
 
@@ -27,6 +31,9 @@ albedo_color = Color(0.0980392, 0.6, 1, 1)
 [sub_resource type="SphereMesh" id="3"]
 material = SubResource("2")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1vktr"]
+albedo_color = Color(0.309804, 0.619608, 0.454902, 1)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -35,19 +42,19 @@ environment = SubResource("Environment_sr4qq")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.963868, 0.213989, -0.158645, 0, 0.595553, 0.803316, 0.266382, 0.77429, -0.574034, -4.02399, 20.3759, -14.5603)
 shadow_enabled = true
-shadow_bias = 0.175
+shadow_bias = 0.04
 shadow_blur = 1.5
 directional_shadow_mode = 0
-directional_shadow_max_distance = 80.0
+directional_shadow_fade_start = 1.0
+directional_shadow_max_distance = 20.0
 
-[node name="InterpolatedCamera3D" type="Camera3D" parent="."]
+[node name="InterpolatedCamera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 current = true
 far = 128.0
 script = ExtResource("1")
 target = NodePath("../CharacterBody3D/Pivot/TargetCamera")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-floor_max_angle = 0.0
 script = ExtResource("2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
@@ -65,14 +72,15 @@ far = 128.0
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
 use_collision = true
-size = Vector3(16, 16, 16)
+size = Vector3(2100, 16, 2000)
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, -0.635887)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 9, -0.635887)
 operation = 2
 radius = 7.0
 radial_segments = 64
 rings = 32
+material = SubResource("StandardMaterial3D_1vktr")
 
 [node name="Tweaks" type="VBoxContainer" parent="."]
 offset_left = 16.0
@@ -84,68 +92,51 @@ script = ExtResource("3")
 
 [node name="TranslateSpeed" type="HBoxContainer" parent="Tweaks"]
 layout_mode = 2
-offset_right = 236.0
-offset_bottom = 26.0
 theme_override_constants/separation = 8
 
 [node name="Label" type="Label" parent="Tweaks/TranslateSpeed"]
 layout_mode = 2
-offset_right = 124.0
-offset_bottom = 26.0
 size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 text = "Translate Speed"
 
 [node name="HSlider" type="HSlider" parent="Tweaks/TranslateSpeed"]
 layout_mode = 2
-offset_left = 132.0
-offset_right = 236.0
-offset_bottom = 16.0
 size_flags_horizontal = 3
 max_value = 1.0
 step = 0.001
 
 [node name="RotateSpeed" type="HBoxContainer" parent="Tweaks"]
 layout_mode = 2
-offset_top = 34.0
-offset_right = 236.0
-offset_bottom = 60.0
 theme_override_constants/separation = 8
 
 [node name="Label" type="Label" parent="Tweaks/RotateSpeed"]
 layout_mode = 2
-offset_right = 114.0
-offset_bottom = 26.0
 size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 text = "Rotate Speed"
 
 [node name="HSlider" type="HSlider" parent="Tweaks/RotateSpeed"]
 layout_mode = 2
-offset_left = 122.0
-offset_right = 236.0
-offset_bottom = 16.0
 size_flags_horizontal = 3
 max_value = 1.0
 step = 0.001
 
 [node name="FOV" type="HBoxContainer" parent="Tweaks"]
 layout_mode = 2
-offset_top = 68.0
-offset_right = 236.0
-offset_bottom = 94.0
 theme_override_constants/separation = 8
 
 [node name="Label" type="Label" parent="Tweaks/FOV"]
 layout_mode = 2
-offset_right = 114.0
-offset_bottom = 26.0
 size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 text = "FOV"
 
 [node name="HSlider" type="HSlider" parent="Tweaks/FOV"]
 layout_mode = 2
-offset_left = 122.0
-offset_right = 236.0
-offset_bottom = 16.0
 size_flags_horizontal = 3
 min_value = 50.0
 step = 0.1
@@ -153,23 +144,17 @@ value = 75.0
 
 [node name="ViewDistance" type="HBoxContainer" parent="Tweaks"]
 layout_mode = 2
-offset_top = 102.0
-offset_right = 236.0
-offset_bottom = 128.0
 theme_override_constants/separation = 8
 
 [node name="Label" type="Label" parent="Tweaks/ViewDistance"]
 layout_mode = 2
-offset_right = 114.0
-offset_bottom = 26.0
 size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 text = "View Distance"
 
 [node name="HSlider" type="HSlider" parent="Tweaks/ViewDistance"]
 layout_mode = 2
-offset_left = 122.0
-offset_right = 236.0
-offset_bottom = 16.0
 size_flags_horizontal = 3
 min_value = 20.0
 max_value = 200.0
@@ -178,23 +163,17 @@ value = 128.0
 
 [node name="FPSLimit" type="HBoxContainer" parent="Tweaks"]
 layout_mode = 2
-offset_top = 136.0
-offset_right = 236.0
-offset_bottom = 162.0
 theme_override_constants/separation = 8
 
 [node name="Label" type="Label" parent="Tweaks/FPSLimit"]
 layout_mode = 2
-offset_right = 114.0
-offset_bottom = 26.0
 size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 text = "FPS Limit"
 
 [node name="HSlider" type="HSlider" parent="Tweaks/FPSLimit"]
 layout_mode = 2
-offset_left = 122.0
-offset_right = 236.0
-offset_bottom = 16.0
 size_flags_horizontal = 3
 min_value = 20.0
 max_value = 144.0

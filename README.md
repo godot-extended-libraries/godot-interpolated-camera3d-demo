@@ -1,6 +1,8 @@
 # InterpolatedCamera3D add-on demo project
 
-**This add-on is only compatible with Godot 4.0 (`master` branch), not 3.2.x.**
+> **Warning**
+>
+> This add-on is only compatible with Godot 4, not 3.x.
 
 ___
 
@@ -12,8 +14,6 @@ Please report issues specific to the add-on
 [here](https://github.com/godot-extended-libraries/godot-interpolated-camera3d), not in this repository.
 
 ## Try it out
-
-**Note:** This project only runs with the current Godot `master` branch, not Godot 3.2.x.
 
 ### Using the Asset Library
 
@@ -38,7 +38,7 @@ if you do not have Git installed.
 
 ## License
 
-Copyright © 2020-2021 Hugo Locurcio and contributors
+Copyright © 2020-present Hugo Locurcio and contributors
 
 Unless otherwise specified, files in this repository are licensed under the
 MIT license. See [LICENSE.md](LICENSE.md) for more information.

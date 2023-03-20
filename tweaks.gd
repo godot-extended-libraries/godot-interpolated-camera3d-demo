@@ -23,4 +23,4 @@ func _on_view_distance_value_changed(value: float) -> void:
 
 
 func _on_max_fps_value_changed(value: float) -> void:
-	Engine.target_fps = floor(value)
+	Engine.max_fps = floor(value)
